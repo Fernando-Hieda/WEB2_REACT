@@ -44,17 +44,17 @@ function Dashboard() {
     }
 
     return (
-        <div className="flex flex-col dark:bg-slate-900 align-center">
+        <div className="flex flex-col dark:bg-slate-900 justify-center align-center h-screen">
             <NavBar />
             {sessionStorage.getItem("isLogged") === 'true' && (
-                <div className="flex-1 flex flex-col items-center m-2 content-center self-center justify-center h-75 max-w-2xl">
-                    <div className="text-xl text-center mt-5">
-                        <input onChange={e => setPlaylistName(e.target.value)} value={playlistName} className="flex-1 p-2 rounded bg-blue-100 dark:bg-blue-800 dark:text-white w-2/5 mx-5" placeholder="Nome da Playlist" type="text" />
+                <div className="flex-1 flex flex-col items-center md:px-64 m-2 h-full max-w-full">
+                    <div className="text-center mt-5">
+                        <input onChange={e => setPlaylistName(e.target.value)} value={playlistName} className="flex-1 p-2 rounded bg-blue-100 dark:bg-blue-800 dark:text-white md:w-2/5 mx-5" placeholder="Nome da Playlist" type="text" />
                         <Button label='Adicionar Playlist' action={adicionarPlaylist} color='green'/>
                     </div>
                     <br/>
                     <br/>
-                    <div className="mx-10 flex flex-row flex-nowrap overflow-x-scroll max-w-screen-sm md:min-w-[28em] h-80">
+                    <div className="md:mx-10 flex flex-row flex-nowrap overflow-x-scroll max-w-full md:min-w-[28em] h-80">
                         {playlistRows}
                     </div>
                 </div>

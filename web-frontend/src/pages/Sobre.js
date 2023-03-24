@@ -9,7 +9,7 @@ function Sobre() {
                     <div className="p-2 dark:text-white text-xl text-justify">Site construido por:</div>
                 </div>
                 <br/>
-                <div className="bg-slate-100 rounded-xl p-4 drop-shadow dark:border-slate-600 items-center bg-gray-200 dark:bg-slate-700 border-solid border-2 dark:border-slate-500">
+                <div className="hover:bg-gray-200 bg-slate-100 rounded-xl p-4 drop-shadow dark:border-slate-600 items-center bg-gray-200 dark:bg-slate-700 border-solid border-2 dark:border-slate-500">
                     <a href="https://www.github.com/jobucaldas">
                         <ul>
                             <li>João Victor Bueno de Caldas</li> 
