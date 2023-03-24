@@ -23,6 +23,15 @@ function Dashboard() {
         fetchPlaylists();
     }, []);
 
+    async function fetchPlaylists() {
+        const response = await fetch('http://localhost:5000/playlist?user_id=' + sessionStorage.getItem("user"));
+        if (response.status === 200) {
+            let responseJson = await response.json();
+            console.log(responseJson);
+            setPlaylists(responseJson);
+        }
+    }
+
     const playlistRows = playlists.map(e => 
     <Card link={e.id} content={e.name}></Card>);
 
@@ -37,6 +46,7 @@ function Dashboard() {
             body: JSON.stringify(playlistRequestBody),
         });
         if (putPlaylistResponse.status === 200) {
+            fetchPlaylists();
             return;
         }
 

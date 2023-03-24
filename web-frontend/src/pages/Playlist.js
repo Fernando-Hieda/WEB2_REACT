@@ -38,6 +38,15 @@ function Playlist() {
         </div>
     </a>);
 
+    async function fetchPlaylists() {
+        const response = await fetch('http://localhost:5000/song?reference=' + queryParameters.get("id"));
+        if (response.status === 200) {
+            let responseJson = await response.json();
+            console.log(responseJson);
+            setSongs(responseJson);
+        }
+    }
+
     async function adicionarMusica() {
         const songRequestBody = {
             reference: queryParameters.get("id"),
@@ -52,6 +61,7 @@ function Playlist() {
         });
         if (putPlaylistResponse.status === 200) {
             console.log(songRequestBody);
+            fetchPlaylists();
             return;
         }
 
@@ -81,7 +91,7 @@ function Playlist() {
         <div className="flex flex-col dark:bg-slate-900 max-h-screen align-center">
             <NavBar />
             <div className="flex-1 flex py-10 items-center align-center justify-center flex-col md:flex-row m-2 content-center self-center justify-center md:w-4/5 max-h-5/6">
-                <div className="flex-1 flex-col grow h-min md:max-w-[26em] content-center align-center text-center justify-center bg-slate-100 rounded-xl p-4 drop-shadow dark:border-slate-600 items-center bg-gray-200 dark:bg-slate-700 border-solid border-2 dark:border-slate-500">
+                {sessionStorage.getItem("isLogged") === 'true' && (<div className="flex-1 flex-col grow h-min md:max-w-[26em] content-center align-center text-center justify-center bg-slate-100 rounded-xl p-4 drop-shadow dark:border-slate-600 items-center bg-gray-200 dark:bg-slate-700 border-solid border-2 dark:border-slate-500">
                     <input onChange={e => setSongName(e.target.value)} value={songName} className=" justify-center p-2 rounded bg-blue-100 dark:bg-blue-800 dark:text-white md:w-full max-w-full mr-5" placeholder="Nome da Música" type="text" />
                     <br/>
                     <br/>
@@ -89,7 +99,7 @@ function Playlist() {
                     <br/>
                     <br/>
                     <Button label='Adicionar Música' action={adicionarMusica} color='green'/>
-                </div>
+                </div>)}
                 <br/>
                 <br/>
                 <div className="md:mx-10 self-stretch content-center align-center text-center overflow-y-scroll md:w-3/5 md:min-w-[28em] md:max-h-[73vh] max-h-[27vh]">
