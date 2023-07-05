@@ -1,4 +1,5 @@
 FROM node:18.2.0
+# FROM mysql:latest
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,4 +14,4 @@ EXPOSE 5000
 
 COPY . .
 
-CMD [ "npm", "start" ]
+CMD ["npm", "start" ]

@@ -9,12 +9,9 @@ services:
     tty: true
     depends_on:
       - db
+    links:
+      - db
     restart: on-failure:5
-    environment:
-      MYSQL_HOST: 'localhost'
-      MYSQL_USER: 'mysql'
-      MYSQL_PASSWORD: '1234'
-      MYSQL_NAME: 'plshare'
     command: >
       sh -c "npm i && npm start"
 
@@ -31,15 +28,13 @@ services:
       sh -c "npm i && npm start"
 
   db:
-    image: mysql:latest
+    build: ./sql
     volumes:
-      - mysql-data:/var/lib/mysql
+      - db:/var/lib/mysql
     restart: always
     ports:
       - 3306:3306
-    environment:
-      MYSQL_DATABASE: 'plshare'
-      MYSQL_ROOT_PASSWORD: '1234'
 
 volumes:
-  mysql-data:
+  db:
+    driver: local
