@@ -21,7 +21,7 @@ function Playlist() {
 
     useEffect(() => {
         async function fetchPlaylists() {
-            const response = await fetch('http://localhost:5000/song?reference=' + queryParameters.get("id"));
+            const response = await fetch('http://172.20.0.2:5000/song?reference=' + queryParameters.get("id"));
             if (response.status === 200) {
                 let responseJson = await response.json();
                 console.log(responseJson);
@@ -39,7 +39,7 @@ function Playlist() {
     </a>);
 
     async function fetchPlaylists() {
-        const response = await fetch('http://localhost:5000/song?reference=' + queryParameters.get("id"));
+        const response = await fetch('http://172.20.0.2:5000/song?reference=' + queryParameters.get("id"));
         if (response.status === 200) {
             let responseJson = await response.json();
             console.log(responseJson);
@@ -54,7 +54,7 @@ function Playlist() {
             name: songName
         };
         console.log(songRequestBody);
-        const putPlaylistResponse = await fetch('http://localhost:5000/song', {
+        const putPlaylistResponse = await fetch('http://172.20.0.2:5000/song', {
             headers: { 'Content-Type': 'application/json' },
             method: 'PUT',
             body: JSON.stringify(songRequestBody),
@@ -72,7 +72,7 @@ function Playlist() {
     //     const playlistRemoveBody = {
     //         id: queryParameters.get("id")
     //     };
-    //     const response = await fetch('http://localhost:5000/playlistRemove', {
+    //     const response = await fetch('http://172.20.0.2:5000/playlistRemove', {
     //         headers: { 'Content-Type': 'application/json' },
     //         method: 'PUT',
     //         body: playlistRemoveBody,

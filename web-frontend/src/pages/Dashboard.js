@@ -13,7 +13,7 @@ function Dashboard() {
 
     useEffect(() => {
         async function fetchPlaylists() {
-            const response = await fetch('http://localhost:5000/playlist?user_id=' + sessionStorage.getItem("user"));
+            const response = await fetch('http://172.20.0.2:5000/playlist?user_id=' + sessionStorage.getItem("user"));
             if (response.status === 200) {
                 let responseJson = await response.json();
                 console.log(responseJson);
@@ -24,7 +24,7 @@ function Dashboard() {
     }, []);
 
     async function fetchPlaylists() {
-        const response = await fetch('http://localhost:5000/playlist?user_id=' + sessionStorage.getItem("user"));
+        const response = await fetch('http://172.20.0.2:5000/playlist?user_id=' + sessionStorage.getItem("user"));
         if (response.status === 200) {
             let responseJson = await response.json();
             console.log(responseJson);
@@ -40,7 +40,7 @@ function Dashboard() {
             user_id: sessionStorage.getItem("user"),
             name: playlistName
         };
-        const putPlaylistResponse = await fetch('http://localhost:5000/playlist', {
+        const putPlaylistResponse = await fetch('http://172.20.0.2:5000/playlist', {
             headers: { 'Content-Type': 'application/json' },
             method: 'PUT',
             body: JSON.stringify(playlistRequestBody),
