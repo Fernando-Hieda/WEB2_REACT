@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  backend:
+    build: ./web-backend/
+    ports:
+      - 5000:5000
+    #para ficar rodando o docker compose
+    tty: true
+    depends_on:
+      - db
+    restart: on-failure:5
+    environment:
+      MYSQL_HOST: 'localhost'
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: '1234'
+      MYSQL_NAME: 'plshare'
+    command: >
+      sh -c "npm i && npm start"
+
+  frontend:
+    build: ./web-frontend
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+    restart: on-failure:5
+    depends_on:
+      - backend
+    command: > #sh, para invocar o shell padrao, caso use no windows, e -c para conseguir rodar um comando
+      sh -c "npm i && npm start"
+
+  db:
+    image: mysql:latest
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: plshare
+      MYSQL_ROOT_PASSWORD: '1234'
+
+volumes:
+  mysql-data:
