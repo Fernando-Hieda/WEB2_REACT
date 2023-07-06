@@ -1,4 +1,6 @@
 # Sistema de criação de playlists
+Nomes:  Fernando Eiji Hieda             769768
+        João Victor Bueno de Caldas     769657
 # Clone este repositório
 
 $ git clone https://github.com/Fernando-Hieda/WEB2_REACT
