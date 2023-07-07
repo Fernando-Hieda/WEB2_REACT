@@ -4,6 +4,7 @@
   
 - Fernando Eiji Hieda             769768
 - João Victor Bueno de Caldas     769657
+- Bruno Matos de Souza            769754
 
 
 # Clone este repositório
