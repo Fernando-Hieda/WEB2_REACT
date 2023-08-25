@@ -37,7 +37,7 @@ export async function retrieveUserByEmail(email) {
         return rows[0];
     } catch (err) {
         throw new CustomError(CustomErrorType.DatabaseError,
-            'Error retrieving user by email: ' + email,
+            'Error retrieving user by email: ' + email + ' URL: ' + getPool().host,
             err);
     }
 }

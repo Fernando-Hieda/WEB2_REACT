@@ -14,6 +14,9 @@ services:
     restart: on-failure:5
     command: >
       sh -c "npm i && npm start"
+    networks:
+      - frontend
+      - backend
 
   frontend:
     build: ./web-frontend
@@ -27,13 +30,25 @@ services:
     command: > #sh, para invocar o shell padrao, caso use no windows, e -c para conseguir rodar um comando
       sh -c "npm i && npm start"
 
+    networks:
+      - frontend
+
   db:
-    build: ./sql
+    build: ./web-backend/src/sql
     volumes:
       - db:/var/lib/mysql
     restart: always
     ports:
       - 3306:3306
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+
+  backend:
+    driver: bridge
 
 volumes:
   db:

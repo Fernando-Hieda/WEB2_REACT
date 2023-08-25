@@ -1,9 +1,8 @@
 import mysql from 'mysql2';
 
 const pool = mysql.createPool({
-    host: "172.20.0.2",
+    host: "web2_react-db-1",
     user: "web2",
-    port: "3306",
     password: "1234",
     database: "plshare"
 }).promise();

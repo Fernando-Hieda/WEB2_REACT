@@ -30,7 +30,7 @@ function Login() {
         } else {
             setInvalidEmail(false);
             try {
-                const getUserResponse = await fetch('http://172.20.0.2:5000/user?email=' + userEmail);
+                const getUserResponse = await fetch('http://localhost:5000/user?email=' + userEmail);
                 if (getUserResponse.status === 200) {
                     const user = await getUserResponse.json();
                 }
@@ -49,7 +49,7 @@ function Login() {
             email: userEmail,
             password: userPassword
         };
-        const putUserResponse = await fetch('http://172.20.0.2:5000/user', {
+        const putUserResponse = await fetch('http://localhost:5000/user', {
             headers: { 'Content-Type': 'application/json' },
             method: 'PUT',
             body: JSON.stringify(userRequestBody),
@@ -65,7 +65,7 @@ function Login() {
 
     async function logUser() {
         setIsUserCreated(false);
-        const getUserResponse = await fetch('http://172.20.0.2:5000/user?email=' + userEmail);
+        const getUserResponse = await fetch('http://localhost:5000/user?email=' + userEmail);
         if (getUserResponse.status === 200) {
             const user = await getUserResponse.json();
             console.log(user);
